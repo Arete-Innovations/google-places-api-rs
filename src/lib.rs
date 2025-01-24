@@ -145,7 +145,7 @@ mod tests {
         assert_eq!(result.error_message, None);
         
     }
-
+    #[tokio::test]
     async fn test_place_details() {
         let mut report = String::new();
         let start = std::time::Instant::now();
@@ -175,7 +175,7 @@ mod tests {
                 .await
             {
                 let details = detail_query_result.get_details();
-                // println!("Processed: {:?}", details);
+                println!("Processed: {:?}", details);
             }
         }
 
@@ -213,9 +213,9 @@ mod tests {
                         .await
                     {
                         let details = detail_query_result.get_details();
-                        // println!("Processed: {:?}", details.place.website);
+                        println!("Processed: {:?}", details.place.website);
                     }else {
-                        // println!("Failed");
+                        println!("Failed");
                     }
                 }
             })

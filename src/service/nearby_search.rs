@@ -164,7 +164,9 @@ impl<'a> NearbySearch<'a> {
                             ("pagetoken", next_page_token),
                         ];
                         page_count += 1;
-                        sleep(Duration::from_millis(2000)).await;
+                        if(page_count != max_pages) {
+                            sleep(Duration::from_millis(2000)).await;
+                        }
 
                     } else {
                         break;
