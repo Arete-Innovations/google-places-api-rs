@@ -1,6 +1,6 @@
+use crate::models::constants::PlaceSearchPlace;
 use serde::{Deserialize, Serialize};
 use strum_macros::{Display, EnumString};
-use crate::models::constants::PlaceSearchPlace;
 
 #[derive(Debug, Serialize, Deserialize, Clone, Default)]
 pub struct NearbySearchResult {
@@ -15,7 +15,7 @@ pub struct NearbySearchResult {
     pub total_results: u32,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default, Clone)]
 pub struct FindPlaceSearchResult {
     #[serde(rename = "candidates")]
     pub places: Vec<PlaceSearchPlace>,
@@ -43,9 +43,18 @@ impl NearbySearchResult {
         self.total_results = self.places.len() as u32;
     }
     pub fn display(&self) -> String {
-        let places = self.places.iter().map(|p| p.display()).collect::<Vec<String>>().join(", ");
+        let places = self
+            .places
+            .iter()
+            .map(|p| p.display())
+            .collect::<Vec<String>>()
+            .join(", ");
         let html_attributions = self.html_attributions.join(", ");
-        let info_messages = self.info_messages.as_ref().map(|v| v.join(", ")).unwrap_or_default();
+        let info_messages = self
+            .info_messages
+            .as_ref()
+            .map(|v| v.join(", "))
+            .unwrap_or_default();
         format!("NearbySearchResult {{ html_attributions: [{}], places: [{}], status: {}, error_message: {}, info_messages: [{}], next_page_token: {}, total_results: {} }}",
                 html_attributions, places, self.status.to_string(),
                 self.error_message.as_ref().unwrap_or(&"".to_string()),
@@ -58,8 +67,17 @@ impl FindPlaceSearchResult {
         self.total_results = self.places.len() as u32;
     }
     pub fn display(&self) -> String {
-        let results = self.places.iter().map(|p| p.display()).collect::<Vec<String>>().join(", ");
-        let info_messages = self.info_messages.as_ref().map(|v| v.join(", ")).unwrap_or_default();
+        let results = self
+            .places
+            .iter()
+            .map(|p| p.display())
+            .collect::<Vec<String>>()
+            .join(", ");
+        let info_messages = self
+            .info_messages
+            .as_ref()
+            .map(|v| v.join(", "))
+            .unwrap_or_default();
         format!("FindPlaceSearchResult {{ results: [{}], status: {}, error_message: {}, info_messages: [{}], total_results: {} }}",
                 results, self.status.to_string(), self.error_message.as_ref().unwrap_or(&"".to_string()), info_messages, self.total_results)
     }
@@ -70,16 +88,24 @@ impl TextSearchResult {
         self.total_results = self.places.len() as u32;
     }
     pub fn display(&self) -> String {
-        let places = self.places.iter().map(|p| p.display()).collect::<Vec<String>>().join(", ");
+        let places = self
+            .places
+            .iter()
+            .map(|p| p.display())
+            .collect::<Vec<String>>()
+            .join(", ");
         let html_attributions = self.html_attributions.join(", ");
-        let info_messages = self.info_messages.as_ref().map(|v| v.join(", ")).unwrap_or_default();
+        let info_messages = self
+            .info_messages
+            .as_ref()
+            .map(|v| v.join(", "))
+            .unwrap_or_default();
         format!("TextSearchResult {{ html_attributions: [{}], places: [{}], status: {}, error_message: {}, info_messages: [{}], next_page_token: {} }}, total_results: {}",
                 html_attributions, places, self.status.to_string(),
                 self.error_message.as_ref().unwrap_or(&"".to_string()),
                 info_messages, self.next_page_token.as_ref().unwrap_or(&"".to_string()), self.total_results)
     }
 }
-
 
 #[derive(Debug, Serialize, PartialEq, Eq, Deserialize, Display, EnumString, Clone, Default)]
 pub enum PlaceSearchStatus {

@@ -1,8 +1,8 @@
-use std::time::Duration;
 use crate::models::constants::place::Location;
 use crate::models::constants::{Language, PlaceSearchPlace, PlaceTypes};
 use crate::models::NearbySearchResult;
 use reqwest::Client;
+use std::time::Duration;
 use tokio::time::sleep;
 
 pub struct NearbySearch<'a> {
@@ -164,10 +164,9 @@ impl<'a> NearbySearch<'a> {
                             ("pagetoken", next_page_token),
                         ];
                         page_count += 1;
-                        if(page_count != max_pages) {
+                        if (page_count != max_pages) {
                             sleep(Duration::from_millis(2000)).await;
                         }
-
                     } else {
                         break;
                     }

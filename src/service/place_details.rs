@@ -32,7 +32,6 @@ impl<'a> PlaceDetails<'a> {
         }
     }
 
-
     /**
     Assign the place_id for a PlaceDetails call.
 
@@ -48,8 +47,10 @@ impl<'a> PlaceDetails<'a> {
 
     fields -> The fields parameter.
     */
-    pub fn with_fields(&mut self, fields: HashSet<PlaceDetailsPlaceFields>) -> &mut PlaceDetails<'a> {
-
+    pub fn with_fields(
+        &mut self,
+        fields: HashSet<PlaceDetailsPlaceFields>,
+    ) -> &mut PlaceDetails<'a> {
         self.fields = Some(fields);
         self
     }
@@ -69,7 +70,10 @@ impl<'a> PlaceDetails<'a> {
 
     review_no_translations -> The review_no_translations parameter.
     */
-    pub fn with_review_no_translations(&mut self, review_no_translations: bool) -> &mut PlaceDetails<'a> {
+    pub fn with_review_no_translations(
+        &mut self,
+        review_no_translations: bool,
+    ) -> &mut PlaceDetails<'a> {
         self.review_no_translation = Some(review_no_translations);
         self
     }
@@ -104,7 +108,6 @@ impl<'a> PlaceDetails<'a> {
         self
     }
 
-
     fn build_params(&self) -> Vec<(&'static str, String)> {
         let mut params = vec![("key", self.api_key.clone())];
 
@@ -113,7 +116,14 @@ impl<'a> PlaceDetails<'a> {
         }
 
         if let Some(fields) = &self.fields {
-            params.push(("fields", fields.iter().map(|f| {f.to_string()}).collect::<Vec<_>>().join(",")));
+            params.push((
+                "fields",
+                fields
+                    .iter()
+                    .map(|f| f.to_string())
+                    .collect::<Vec<_>>()
+                    .join(","),
+            ));
         }
 
         if let Some(language) = &self.language {
@@ -183,4 +193,3 @@ impl<'a> PlaceDetails<'a> {
         self.result.clone()
     }
 }
-

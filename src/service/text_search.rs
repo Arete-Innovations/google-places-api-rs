@@ -140,7 +140,6 @@ impl<'a> TextSearch<'a> {
         self
     }
 
-
     fn build_params(&self) -> Vec<(&'static str, String)> {
         let mut params = vec![("key", self.api_key.clone())];
 
@@ -217,13 +216,13 @@ impl<'a> TextSearch<'a> {
                                 params = self.build_params();
 
                                 page_count += 1;
-                                if(page_count != max_pages) {
+                                if (page_count != max_pages) {
                                     sleep(Duration::from_millis(2000)).await;
                                 }
                             } else {
                                 break; // No more pages to fetch
                             }
-                        },
+                        }
                         Err(err) => {
                             println!("Failed to parse API response: {:?}", err);
                             return None;

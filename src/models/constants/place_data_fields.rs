@@ -127,7 +127,7 @@ pub enum PlaceSearchPlaceFields {
     // Contact
     #[strum(serialize = "opening_hours")]
     OpeningHours,
-    
+
     // Atmosphere Data
     #[strum(serialize = "price_level")]
     PriceLevel,
@@ -137,15 +137,23 @@ pub enum PlaceSearchPlaceFields {
     UserRatingsTotal,
 }
 
-
 mod tests {
     use super::*;
 
     #[test]
     fn test_place_details_fields_as_str() {
-        assert_eq!(PlaceDetailsPlaceFields::AddressComponents.to_string(), "address_components");
-        assert_eq!(PlaceDetailsPlaceFields::BusinessStatus.to_string(), "business_status");
-        assert_eq!(PlaceDetailsPlaceFields::FormattedAddress.to_string(), "formatted_address");
+        assert_eq!(
+            PlaceDetailsPlaceFields::AddressComponents.to_string(),
+            "address_components"
+        );
+        assert_eq!(
+            PlaceDetailsPlaceFields::BusinessStatus.to_string(),
+            "business_status"
+        );
+        assert_eq!(
+            PlaceDetailsPlaceFields::FormattedAddress.to_string(),
+            "formatted_address"
+        );
     }
 
     #[test]
@@ -160,9 +168,18 @@ mod tests {
 
     #[test]
     fn test_place_search_fields_as_str() {
-        assert_eq!(PlaceSearchPlaceFields::FormattedAddress.to_string(), "formatted_address");
-        assert_eq!(PlaceSearchPlaceFields::BusinessStatus.to_string(), "business_status");
-        assert_eq!(PlaceSearchPlaceFields::FormattedAddress.to_string(), "formatted_address");
+        assert_eq!(
+            PlaceSearchPlaceFields::FormattedAddress.to_string(),
+            "formatted_address"
+        );
+        assert_eq!(
+            PlaceSearchPlaceFields::BusinessStatus.to_string(),
+            "business_status"
+        );
+        assert_eq!(
+            PlaceSearchPlaceFields::FormattedAddress.to_string(),
+            "formatted_address"
+        );
     }
 
     #[test]

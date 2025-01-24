@@ -1,6 +1,6 @@
+use crate::models::Photo;
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
-use crate::models::Photo;
 
 #[derive(Debug, Serialize, Deserialize, Default, Clone)]
 pub struct PlaceDetailsPlace {
@@ -71,13 +71,12 @@ pub struct PlaceSearchPlace {
 
     // Contact
     pub opening_hours: Option<OpeningHours>,
-    
+
     // Atmosphere
     pub price_level: Option<i32>,
     pub rating: Option<f32>,
     pub user_ratings_total: Option<i32>,
 }
-
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AddressComponent {
@@ -99,7 +98,6 @@ pub struct Location {
 }
 
 impl Location {
-
     pub fn new(lat: f64, lon: f64) -> Self {
         Location {
             lat: Some(lat),
@@ -114,7 +112,6 @@ impl Location {
             panic!("Cannot convert Location to string: one of lat, lon is None");
         }
     }
-
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -204,7 +201,8 @@ impl PlaceDetailsPlace {
     pub fn display(&self) -> String {
         let json_value: Value = json!(self);
         let cleaned_value = remove_empty_fields(&json_value);
-        serde_json::to_string_pretty(&cleaned_value).unwrap_or_else(|_| String::from("Error formatting Place"))
+        serde_json::to_string_pretty(&cleaned_value)
+            .unwrap_or_else(|_| String::from("Error formatting Place"))
     }
 }
 
@@ -212,7 +210,8 @@ impl PlaceSearchPlace {
     pub fn display(&self) -> String {
         let json_value: Value = json!(self);
         let cleaned_value = remove_empty_fields(&json_value);
-        serde_json::to_string_pretty(&cleaned_value).unwrap_or_else(|_| String::from("Error formatting Place"))
+        serde_json::to_string_pretty(&cleaned_value)
+            .unwrap_or_else(|_| String::from("Error formatting Place"))
     }
 }
 
@@ -228,10 +227,7 @@ fn remove_empty_fields(value: &Value) -> Value {
             Value::Object(cleaned_fields)
         }
         Value::Array(arr) => {
-            let cleaned_array: Vec<Value> = arr
-                .iter()
-                .map(|v| remove_empty_fields(v))
-                .collect();
+            let cleaned_array: Vec<Value> = arr.iter().map(|v| remove_empty_fields(v)).collect();
 
             Value::Array(cleaned_array)
         }

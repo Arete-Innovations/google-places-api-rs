@@ -1,5 +1,5 @@
-use serde::{Deserialize, Serialize};
 use crate::models::constants::PlaceDetailsPlace;
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Default, Clone)]
 pub struct PlaceDetailsResult {
@@ -13,7 +13,11 @@ pub struct PlaceDetailsResult {
 impl PlaceDetailsResult {
     pub fn display(&self) -> String {
         let html_attributions = self.html_attributions.join(", ");
-        let info_messages = self.info_messages.as_ref().map(|v| v.join(", ")).unwrap_or_default();
+        let info_messages = self
+            .info_messages
+            .as_ref()
+            .map(|v| v.join(", "))
+            .unwrap_or_default();
         format!("PlaceDetails {{ html_attributions: [{}], place: {}, status: {}, info_messages: [{}] }}", 
             html_attributions, self.place.display(), self.status.as_str(), info_messages)
     }
@@ -51,5 +55,3 @@ impl PlaceDetailsStatus {
         }
     }
 }
-
-

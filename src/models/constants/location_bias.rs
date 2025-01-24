@@ -1,4 +1,4 @@
-use serde::{Deserialize};
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize, Copy, Clone, PartialEq)]
 pub enum LocationBias {
@@ -20,10 +20,19 @@ impl LocationBias {
     pub fn to_string(&self) -> String {
         match self {
             LocationBias::IpBias => "ipbias".to_string(),
-            LocationBias::Circular { radius, latitude, longitude } => {
+            LocationBias::Circular {
+                radius,
+                latitude,
+                longitude,
+            } => {
                 format!("circle:{}@{},{}", radius, latitude, longitude)
             }
-            LocationBias::Rectangular { south, west, north, east } => {
+            LocationBias::Rectangular {
+                south,
+                west,
+                north,
+                east,
+            } => {
                 format!("rectangle:{},{}|{},{}", south, west, north, east)
             }
         }

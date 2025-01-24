@@ -3,7 +3,7 @@ use strum_macros::{Display, EnumString};
 
 #[derive(Debug, Copy, Clone, Serialize, Deserialize, Hash, PartialEq, Eq, Display, EnumString)]
 pub enum PlaceTypes {
-    //Table 1 lists the types that are supported for place searches, 
+    //Table 1 lists the types that are supported for place searches,
     //and can be returned with Place details results, and as part of autocomplete place predictions.
     #[strum(serialize = "accounting")]
     Accounting,
@@ -198,7 +198,7 @@ pub enum PlaceTypes {
     #[strum(serialize = "zoo")]
     Zoo,
 
-    //Table 2 lists additional types that can be returned with Place details results, 
+    //Table 2 lists additional types that can be returned with Place details results,
     //and as part of autocomplete place predictions.
     #[strum(serialize = "administrative_area_level_1")]
     AdministrativeAreaLevel1,
