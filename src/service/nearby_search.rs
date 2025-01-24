@@ -150,26 +150,30 @@ impl<'a> NearbySearch<'a> {
         while page_count < max_pages {
             let resp = self.client.get(url).query(&params).send().await.unwrap();
 
-            if let Ok(query_result) = resp.json::<NearbySearchResult>().await {
-                if page_count == 0 {
-                    self.result = query_result.clone();
-                } else {
-                    self.result.places.extend(query_result.places);
-                }
+            match resp.json::<NearbySearchResult>().await {
+                Ok(query_result) => {
+                    if page_count == 0 {
+                        self.result = query_result.clone();
+                    } else {
+                        self.result.places.extend(query_result.places);
+                    }
 
-                if let Some(next_page_token) = query_result.next_page_token {
-                    params = vec![
-                        ("key", self.api_key.clone()),
-                        ("pagetoken", next_page_token),
-                    ];
-                    page_count += 1;
-                    sleep(Duration::from_millis(2000)).await;
+                    if let Some(next_page_token) = query_result.next_page_token {
+                        params = vec![
+                            ("key", self.api_key.clone()),
+                            ("pagetoken", next_page_token),
+                        ];
+                        page_count += 1;
+                        sleep(Duration::from_millis(2000)).await;
 
-                } else {
-                    break;
+                    } else {
+                        break;
+                    }
                 }
-            } else {
-                return None;
+                Err(err) => {
+                    println!("Error parsing response: {:?}", err);
+                    return None;
+                }
             }
         }
 

@@ -200,28 +200,32 @@ impl<'a> TextSearch<'a> {
                 while page_count < max_pages {
                     let resp = self.client.get(url).query(&params).send().await.unwrap();
 
-                    if let Ok(query_result) = resp.json::<TextSearchResult>().await {
-                        if page_count == 0 {
-                            // First page, initialize result
-                            self.result = query_result.clone();
-                            self.pagetoken = query_result.next_page_token.clone();
-                        } else {
-                            // Append subsequent pages
-                            self.pagetoken = query_result.next_page_token.clone();
+                    match resp.json::<TextSearchResult>().await {
+                        Ok(query_result) => {
+                            if page_count == 0 {
+                                // First page, initialize result
+                                self.result = query_result.clone();
+                                self.pagetoken = query_result.next_page_token.clone();
+                            } else {
+                                // Append subsequent pages
+                                self.pagetoken = query_result.next_page_token.clone();
 
-                            self.result.places.extend(query_result.places);
+                                self.result.places.extend(query_result.places);
+                            }
+
+                            if let Some(next_page_token) = query_result.next_page_token {
+                                params = self.build_params();
+
+                                page_count += 1;
+                                sleep(Duration::from_millis(2000)).await;
+                            } else {
+                                break; // No more pages to fetch
+                            }
+                        },
+                        Err(err) => {
+                            println!("Failed to parse API response: {:?}", err);
+                            return None;
                         }
-
-                        if let Some(next_page_token) = query_result.next_page_token {
-                            params = self.build_params();
-
-                            page_count += 1;
-                            sleep(Duration::from_millis(2000)).await;
-                        } else {
-                            break; // No more pages to fetch
-                        }
-                    } else {
-                        return None; // Error occurred while parsing response
                     }
                 }
 
