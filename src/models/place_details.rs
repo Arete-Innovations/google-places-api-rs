@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 use crate::models::constants::PlaceDetailsPlace;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default, Clone)]
 pub struct PlaceDetailsResult {
     pub html_attributions: Vec<String>,
     #[serde(rename = "result")]
@@ -19,7 +19,7 @@ impl PlaceDetailsResult {
     }
 }
 
-#[derive(Debug, Serialize, PartialEq, Eq, Deserialize)]
+#[derive(Debug, Serialize, PartialEq, Eq, Deserialize, Default, Clone)]
 pub enum PlaceDetailsStatus {
     #[serde(rename = "OK")]
     Ok,
@@ -32,6 +32,7 @@ pub enum PlaceDetailsStatus {
     #[serde(rename = "INVALID_REQUEST")]
     InvalidRequest,
     #[serde(rename = "UNKNOWN_ERROR")]
+    #[default]
     UnknownError,
     #[serde(rename = "NOT_FOUND")]
     NotFound,

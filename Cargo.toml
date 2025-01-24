@@ -1,40 +1,18 @@
 [package]
-name = "google-places-api"
-version = "0.5.2"
+name = "tragplaces"
+version = "0.1.0"
 edition = "2021"
-description = "Crate to access google places api. Get location data for over 200 million places, and add place details, search, and autocomplete to your apps."
-homepage = "https://github.com/jareducherek/google-places-api-rs"
-documentation = "https://docs.rs/google-places-api"
-repository = "https://github.com/jareducherek/google-places-api-rs"
-readme = "README.md"
-license = "MIT"
-keywords = ["google", "places", "api", "reviews", "ratings"]
-categories = ["api-bindings"]
-
-exclude = [
-  "tests/*",
-]
 
 [dependencies]
-serde = { version = "1.0.127", features = ["derive"] }
-serde_json = "1.0"
-ureq = { version = "2.1.1", features = ["json"] }
-dotenv = "0.15.0"
-image = "0.24.0"
-reqwest = {version = "0.11", features = ["json","blocking"] }
-tokio = { version = "1.28.2", features = ["full"] }
-geoutils = "0.5.1"
-itertools = "0.10.5"
-thiserror = "1.0"
-urlencoding = "2.1.2"
-isocountry = "0.3.2"
-uuid = {version = "1.3.3", features = ["v4", "fast-rng", "macro-diagnostics"] }# Feature optional dependencies
-async-graphql = { version = "2.9.9", optional = true }
-relative-path = "1.8.0"
-strum = "0.25.0"
-strum_macros = "0.25.0"
-tracing = { version = "0.1", features = [ "log" ] }
-tracing-subscriber = "0.3"
+serde = { version = "1.0.217", features = ["derive"] }
+strum_macros = "0.26.4"
+serde_json = "1.0.135"
+reqwest = { version="0.12.12", features = ["json", "blocking"]  }
+strum = "0.26.3"
+tokio = { version = "1.43.0", features = ["full"]  }
 
-[dev-dependencies]
-mockito = "1.0.0"
+isocountry = "0.3.2"
+futures = "0.3.31"
+[features]
+# Declare your feature flags
+blocking = []

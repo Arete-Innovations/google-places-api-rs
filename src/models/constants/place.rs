@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 use crate::models::Photo;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default, Clone)]
 pub struct PlaceDetailsPlace {
     // Basic
     #[serde(rename = "place_id")]
@@ -52,7 +52,7 @@ pub struct PlaceDetailsPlace {
     pub user_ratings_total: Option<i32>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct PlaceSearchPlace {
     // Basic
     #[serde(rename = "place_id")]
@@ -96,6 +96,25 @@ pub struct Geometry {
 pub struct Location {
     pub lat: Option<f64>,
     pub lon: Option<f64>,
+}
+
+impl Location {
+
+    pub fn new(lat: f64, lon: f64) -> Self {
+        Location {
+            lat: Some(lat),
+            lon: Some(lon),
+        }
+    }
+
+    pub fn to_string(&self) -> String {
+        if let (Some(lat), Some(lon)) = (self.lat, self.lon) {
+            format!("{},{}", lat, lon)
+        } else {
+            panic!("Cannot convert Location to string: one of lat, lon is None");
+        }
+    }
+
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
