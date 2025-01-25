@@ -10,7 +10,7 @@ pub enum InputType {
 }
 
 mod tests {
-    use super::InputType;
+    use crate::models::constants::InputType;
 
     #[test]
     fn test_rankby_as_str() {

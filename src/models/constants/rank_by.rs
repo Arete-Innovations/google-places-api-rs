@@ -10,7 +10,7 @@ pub enum RankBy {
 }
 
 mod tests {
-    use super::RankBy;
+    use crate::models::constants::RankBy;
 
     #[test]
     fn test_rankby_as_str() {

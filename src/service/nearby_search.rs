@@ -19,7 +19,6 @@ pub struct NearbySearch<'a> {
     api_key: String,
     client: &'a Client,
     result: NearbySearchResult,
-    current_index: usize,
 }
 
 impl<'a> NearbySearch<'a> {
@@ -38,7 +37,6 @@ impl<'a> NearbySearch<'a> {
             api_key: String::from(api_key),
             client,
             result: Default::default(),
-            current_index: 0,
         }
     }
 
@@ -164,7 +162,7 @@ impl<'a> NearbySearch<'a> {
                             ("pagetoken", next_page_token),
                         ];
                         page_count += 1;
-                        if (page_count != max_pages) {
+                        if page_count != max_pages {
                             sleep(Duration::from_millis(2000)).await;
                         }
                     } else {

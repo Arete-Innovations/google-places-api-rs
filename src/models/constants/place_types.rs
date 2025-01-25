@@ -301,7 +301,7 @@ pub enum PlaceTypes {
 }
 
 mod tests {
-    use super::PlaceTypes;
+    use crate::models::constants::PlaceTypes;
 
     #[test]
     fn test_language_as_str() {

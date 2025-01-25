@@ -156,7 +156,7 @@ impl<'a> PlaceDetails<'a> {
         match self.place_id.clone() {
             Some(_) => {
                 let url = "https://maps.googleapis.com/maps/api/place/details/json";
-                let mut params = self.build_params();
+                let params = self.build_params();
 
                 let resp = self.client.get(url).query(&params).send().await.unwrap();
 

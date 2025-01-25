@@ -1,9 +1,7 @@
-use crate::models::constants::{Language, LocationBias, PlaceDetailsPlaceFields, PlaceSearchPlace, PlaceSearchPlaceFields, ReviewSort};
-use crate::models::{FindPlaceSearchResult, PlaceDetailsResult};
-use isocountry::CountryCode;
+use crate::models::constants::{Language, LocationBias, PlaceSearchPlace, PlaceSearchPlaceFields};
+use crate::models::FindPlaceSearchResult;
 use reqwest::Client;
 use std::collections::HashSet;
-use crate::service::text_search::{TextSearch, TextSearchIter};
 
 pub struct FindPlace<'a> {
     input: Option<String>,

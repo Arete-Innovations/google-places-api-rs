@@ -191,7 +191,7 @@ impl<'a> TextSearch<'a> {
     */
     pub async fn execute(&mut self, max_pages: usize) -> Option<&mut TextSearch<'a>> {
         match (self.text_query.clone(), self.place_type.clone()) {
-            (Some(_), _) | (_, Some(_)) | (Some(_), Some(_)) => {
+            (Some(_), _) | (_, Some(_)) => {
                 let url = "https://maps.googleapis.com/maps/api/place/textsearch/json";
                 let mut params = self.build_params();
                 let mut page_count = 0;
@@ -204,19 +204,17 @@ impl<'a> TextSearch<'a> {
                             if page_count == 0 {
                                 // First page, initialize result
                                 self.result = query_result.clone();
-                                self.pagetoken = query_result.next_page_token.clone();
                             } else {
                                 // Append subsequent pages
-                                self.pagetoken = query_result.next_page_token.clone();
-
                                 self.result.places.extend(query_result.places);
                             }
 
                             if let Some(next_page_token) = query_result.next_page_token {
+                                self.pagetoken = Some(next_page_token);
                                 params = self.build_params();
 
                                 page_count += 1;
-                                if (page_count != max_pages) {
+                                if page_count != max_pages {
                                     sleep(Duration::from_millis(2000)).await;
                                 }
                             } else {

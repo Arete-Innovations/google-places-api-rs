@@ -10,7 +10,7 @@ pub enum ReviewSort {
 }
 
 mod tests {
-    use super::ReviewSort;
+    use crate::models::constants::ReviewSort;
 
     #[test]
     fn test_rankby_as_str() {

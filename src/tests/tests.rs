@@ -1,15 +1,15 @@
 #[cfg(test)]
 mod tests {
 
-    use super::*;
+    
     use crate::models::constants::place::Location;
     use crate::models::constants::place_types::PlaceTypes;
     use crate::models::constants::{Language, PlaceDetailsPlaceFields};
     use crate::service::api::GooglePlacesAPI;
     use futures::future::join_all;
     use std::collections::HashSet;
-    use std::fs::File;
-    use std::io::{BufWriter, Write};
+    
+    
     use std::time::Instant;
 
 
@@ -35,6 +35,7 @@ mod tests {
             result.info_messages,
             start.elapsed()
         ));
+        println!("{}",report);
 
         assert_eq!(result.error_message, None);
     }
@@ -62,6 +63,7 @@ mod tests {
             result.info_messages,
             start.elapsed()
         ));
+        println!("{}",report);
 
         assert_eq!(result.error_message, None);
     }
@@ -90,6 +92,7 @@ mod tests {
             result.info_messages,
             start.elapsed()
         ));
+        println!("{}",report);
 
         assert_eq!(result.error_message, None);
     }
@@ -117,12 +120,12 @@ mod tests {
             result.info_messages,
             start.elapsed()
         ));
-
+        println!("{}",report);
         assert_eq!(result.error_message, None);
     }
     #[tokio::test]
     async fn test_place_details() {
-        let mut report = String::new();
+        let report = String::new();
         let start = std::time::Instant::now();
 
         let places_api = GooglePlacesAPI::new();
@@ -157,7 +160,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_place_details_map_mode() {
-        let mut report = String::new();
+        let report = String::new();
         let start = std::time::Instant::now();
 
         let places_api = GooglePlacesAPI::new();
@@ -200,7 +203,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_place_details_map_mode_nearby() {
-        let mut report = String::new();
+        let report = String::new();
         let start = std::time::Instant::now();
 
         let places_api = GooglePlacesAPI::new();
@@ -248,7 +251,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_details_interface() {
-        let mut report = String::new();
+        let report = String::new();
         let start = std::time::Instant::now();
 
         let places_api = GooglePlacesAPI::new();
@@ -328,11 +331,11 @@ mod tests {
 
     #[tokio::test]
     async fn test_find_place_iterator() {
-        let mut report = String::new();
+        let report = String::new();
         let start = std::time::Instant::now();
 
         let places_api = GooglePlacesAPI::new();
-        let mut find_place = places_api
+        let find_place = places_api
             .place_search()
             .find_place()
             .with_input("coffee")
