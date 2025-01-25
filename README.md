@@ -57,7 +57,9 @@ async fn main() {
     let mut place_search = api.place_search();
 
     let result: NearbySearchResult = place_search
-        .nearby_search(Location::new(37.7749, -122.4194), 1500) // San Francisco coordinates with a 1.5 km radius
+        .nearby_search() // San Francisco coordinates with a 1.5 km radius
+        .with_location(Location::new(37.7749, -122.4194))
+        .with_radius(1500)
         .execute()
         .await
         .unwrap();
@@ -78,7 +80,8 @@ async fn main() {
     let place_search = api.place_search();
 
     let result: PlaceDetailsResult = place_search
-        .place_details("ChIJVXealLU_xkcRja_At0z9AGY") // Replace with a valid Place ID
+        .place_details() // Replace with a valid Place ID
+        .with_place_id("ChIJVXealLU_xkcRja_At0z9AGY")
         .execute()
         .await
         .unwrap();
@@ -99,7 +102,9 @@ async fn main() {
     let mut place_search = api.place_search();
 
     let result: FindPlaceSearchResult = place_search
-        .find_place("Googleplex", "textquery")
+        .find_place()
+        .with_input("Googleplex")
+        .with_input_type("textquery")
         .execute()
         .await
         .unwrap();
