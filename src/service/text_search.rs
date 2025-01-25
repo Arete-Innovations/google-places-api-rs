@@ -186,9 +186,24 @@ impl<'a> TextSearch<'a> {
         params
     }
 
-    /**
-    Execute the call in an asynchronous fashion.
-    */
+
+    /// Execute the TextSearch call in a non-blocking fashion.
+    ///
+    /// This will make a request to the Google Places API and retrieve the results. The results will be stored in the `result` field of the `TextSearch` struct.
+    ///
+    /// If the query is successful, the method will return `Some(self)`. If the query fails, the method will return `None`.
+    ///
+    /// # Panics
+    ///
+    /// Panics if the query_text and type fields are both `None`.
+    ///
+    /// # Errors
+    ///
+    /// If the query fails, the method will return `None`. In this case, you should check the error message contained in the `result` field of the `TextSearch` struct.
+    ///
+    /// # Examples
+    ///
+    ///
     pub async fn execute(&mut self, max_pages: usize) -> Option<&mut TextSearch<'a>> {
         match (self.text_query.clone(), self.place_type.clone()) {
             (Some(_), _) | (_, Some(_)) => {
@@ -236,9 +251,18 @@ impl<'a> TextSearch<'a> {
         }
     }
 
-    /**
-    Execute the call in a blocking fashion.
-    */
+
+    /// Execute the call in a blocking fashion.
+    ///
+    /// This function will return `None` if the response from the API cannot be parsed.
+    ///
+    /// # Arguments
+    ///
+    /// * `max_pages` - The maximum number of pages of results to fetch.
+    ///
+    /// # Examples
+    ///
+    ///
     #[cfg(feature = "blocking")]
     pub fn execute_blocking(&mut self, max_pages: usize) -> Option<&mut TextSearch<'a>> {
         tokio::runtime::Runtime::new()
@@ -270,6 +294,14 @@ impl<'a> TextSearch<'a> {
     pub fn at(&self, index: usize) -> Option<&PlaceSearchPlace> {
         self.result.places.get(index)
     }
+    /**
+    Retrieve a cloned `TextSearchResult`.
+
+    This function returns a clone of the `TextSearchResult` associated with the `TextSearch` instance.
+
+    # Returns
+    A `TextSearchResult` object that contains the results of the text search operation.
+    */
     pub fn get_result(&'a self) -> TextSearchResult {
         self.result.clone()
     }
@@ -282,6 +314,15 @@ pub struct TextSearchIter<'a, 'b> {
 impl<'a, 'b> Iterator for TextSearchIter<'a, 'b> {
     type Item = &'b PlaceSearchPlace;
 
+    /// Advances the iterator and returns the next value.
+    ///
+    /// Returns `None` when iteration is finished.
+    ///
+    /// # Safety
+    ///
+    /// This function is unsafe because it uses `std::mem::transmute` to cast a reference to `PlaceSearchPlace` to a reference to `&'b PlaceSearchPlace`.
+    /// This is safe because the `TextSearchIterator` is only ever created from a `&'b mut TextSearch<'a>`, so we know that the lifetime of the `TextSearch`
+    /// is at least as long as the lifetime of the `TextSearchIterator`.
     fn next(&mut self) -> Option<Self::Item> {
         if self.current_index < self.text_search.result.places.len() {
             let place = &self.text_search.result.places[self.current_index];

@@ -149,9 +149,18 @@ impl<'a> PlaceDetails<'a> {
         params
     }
 
-    /**
-    Execute the call in an asynchronous fashion.
-    */
+
+    /// Execute a PlaceDetails call asynchronously.
+    ///
+    /// # Returns
+    /// If the call is successful, returns a reference to the same `PlaceDetails` instance.
+    /// Otherwise, returns `None`.
+    ///
+    /// # Errors
+    /// If the call fails, prints an error message to `stdout` and returns `None`.
+    ///
+    /// # Panics
+    /// If `place_id` is `None`, panics with a message.
     pub async fn execute(&mut self) -> Option<&mut PlaceDetails<'a>> {
         match self.place_id.clone() {
             Some(_) => {
@@ -179,9 +188,18 @@ impl<'a> PlaceDetails<'a> {
         }
     }
 
-    /**
-    Execute the call in a blocking fashion.
-    */
+
+    /// Execute a PlaceDetails call in a blocking fashion.
+    ///
+    /// # Returns
+    /// If the call is successful, returns a reference to the same `PlaceDetails` instance.
+    /// Otherwise, returns `None`.
+    ///
+    /// # Errors
+    /// If the call fails, prints an error message to `stdout` and returns `None`.
+    ///
+    /// # Panics
+    /// If `place_id` is `None`, panics with a message.
     #[cfg(feature = "blocking")]
     pub fn execute_blocking(&mut self) -> Option<&mut PlaceDetails<'a>> {
         tokio::runtime::Runtime::new()
@@ -189,6 +207,10 @@ impl<'a> PlaceDetails<'a> {
             .block_on(self.execute())
     }
 
+    /// Retrieve the result of a PlaceDetails call.
+    ///
+    /// # Returns
+    /// A `PlaceDetailsResult` containing the details fetched from the API.
     pub fn get_details(&self) -> PlaceDetailsResult {
         self.result.clone()
     }

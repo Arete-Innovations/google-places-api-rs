@@ -15,6 +15,16 @@ pub struct FindPlace<'a> {
 }
 
 impl<'a> FindPlace<'a> {
+    /// Construct a new `FindPlace` instance.
+    ///
+    /// # Arguments
+    ///
+    /// * `api_key` - The Google Places API key.
+    /// * `client` - The reqwest client instance.
+    ///
+    /// # Returns
+    ///
+    /// A new instance of `FindPlace`.
     pub fn new(api_key: &str, client: &'a Client) -> Self {
         Self {
             input: None,
@@ -187,6 +197,15 @@ pub struct FindPlaceIterator<'a, 'b> {
 impl<'a, 'b> Iterator for FindPlaceIterator<'a, 'b> {
     type Item = &'b PlaceSearchPlace;
 
+    /// Advances the iterator and returns the next value.
+    ///
+    /// Returns `None` when iteration is finished.
+    ///
+    /// # Safety
+    ///
+    /// This function is unsafe because it uses `std::mem::transmute` to cast a reference to `PlaceSearchPlace` to a reference to `&'b PlaceSearchPlace`.
+    /// This is safe because the `FindPlaceIterator` is only ever created from a `&'b mut FindPlace<'a>`, so we know that the lifetime of the `FindPlace`
+    /// is at least as long as the lifetime of the `FindPlaceIterator`.
     fn next(&mut self) -> Option<Self::Item> {
         if self.current_index < self.find_place.result.places.len() {
             let place = &self.find_place.result.places[self.current_index];
