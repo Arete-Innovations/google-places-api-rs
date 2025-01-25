@@ -13,7 +13,7 @@ A comprehensive Rust library to interact with the Google Places API, providing m
 ## Features
 
 - Place Details
-- Place Photos
+- Place Photos [TODO]
 - Nearby Search
 - Find Place Search
 - Text Search
@@ -108,24 +108,7 @@ async fn main() {
 }
 ```
 
-### Example: Fetch Photos
 
-```rust
-use google_places_api::GooglePlacesAPI;
-
-#[tokio::main]
-async fn main() {
-    let api = GooglePlacesAPI::new();
-    let place_search = api.place_search();
-
-    let photos = place_search
-        .fetch_photos("A photo reference ID")
-        .await
-        .unwrap();
-
-    println!("Fetched Photos: {:?}", photos);
-}
-```
 
 ---
 
