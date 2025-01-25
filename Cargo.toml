@@ -2,6 +2,18 @@
 name = "google-places-api-rs"
 version = "0.1.0"
 edition = "2021"
+authors = ["Croitoru Cristian <cristianalexandrucroitoru@gmail.com>"]
+description = "Unofficial Google Places API for rust."
+license = "BSD-3-Clause"
+documentation = "https://docs.rs/google_places_api_rs"
+repository = "https://github.com/ZmoleCristian/google-places-api-rs"
+keywords = ["google", "places", "api", "reviews", "ratings"]
+categories = ["asynchronous", "api-bindings"]
+readme = "README.md"
+
+exclude = [
+    "tests/*",
+]
 
 [dependencies]
 serde = { version = "1.0.217", features = ["derive"] }
@@ -15,5 +27,4 @@ futures = "0.3.31"
 dotenv = "0.15.0"
 
 [features]
-# Declare your feature flags
 blocking = []

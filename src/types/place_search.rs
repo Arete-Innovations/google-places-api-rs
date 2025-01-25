@@ -1,4 +1,4 @@
-use crate::models::constants::PlaceSearchPlace;
+use crate::types::constants::PlaceSearchPlace;
 use serde::{Deserialize, Serialize};
 use strum_macros::{Display, EnumString};
 

@@ -1,4 +1,4 @@
-use crate::models::constants::PlaceDetailsPlace;
+use crate::types::constants::PlaceDetailsPlace;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Default, Clone)]

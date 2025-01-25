@@ -2,10 +2,10 @@
 mod tests {
 
     
-    use crate::models::constants::place::Location;
-    use crate::models::constants::place_types::PlaceTypes;
-    use crate::models::constants::{Language, PlaceDetailsPlaceFields};
-    use crate::service::api::GooglePlacesAPI;
+    use crate::types::constants::place::Location;
+    use crate::types::constants::place_types::PlaceTypes;
+    use crate::types::constants::{Language, PlaceDetailsPlaceFields};
+    use crate::endpoints::api::GooglePlacesAPI;
     use futures::future::join_all;
     use std::collections::HashSet;
     

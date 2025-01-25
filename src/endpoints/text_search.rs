@@ -1,6 +1,6 @@
-use crate::models::constants::place::Location;
-use crate::models::constants::{Language, PlaceSearchPlace, PlaceTypes};
-use crate::models::TextSearchResult;
+use crate::types::constants::place::Location;
+use crate::types::constants::{Language, PlaceSearchPlace, PlaceTypes};
+use crate::types::TextSearchResult;
 use reqwest::Client;
 use std::time::Duration;
 use tokio::time::sleep;
@@ -10,7 +10,7 @@ pub struct TextSearch<'a> {
     radius: Option<f64>,
     language: Option<Language>,
     location: Option<Location>,
-    maxprice: Option<u8>, //TODO: make enums
+    maxprice: Option<u8>,
     minprice: Option<u8>,
     opennow: Option<bool>,
     pagetoken: Option<String>,

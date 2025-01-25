@@ -1,5 +1,5 @@
-pub mod models;
-pub mod service;
+pub mod types;
+pub mod endpoints;
 
 mod tests;
 
@@ -15,4 +15,4 @@ into their Rust applications.
 
 */
 
-pub use service::api::GooglePlacesAPI;
+pub use endpoints::api::GooglePlacesAPI;

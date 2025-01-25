@@ -1,4 +1,4 @@
-use crate::models::Photo;
+use crate::types::Photo;
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 

@@ -1,5 +1,5 @@
-use crate::models::constants::{Language, LocationBias, PlaceSearchPlace, PlaceSearchPlaceFields};
-use crate::models::FindPlaceSearchResult;
+use crate::types::constants::{Language, LocationBias, PlaceSearchPlace, PlaceSearchPlaceFields};
+use crate::types::FindPlaceSearchResult;
 use reqwest::Client;
 use std::collections::HashSet;
 
@@ -188,7 +188,15 @@ impl<'a> FindPlace<'a> {
     }
 }
 
+/**
+An iterator over the places in a FindPlace object.
 
+The iterator is initialized to start at the first place (index 0).
+
+It allows you to iterate over the places in the FindPlace result without having to manually keep track of the index.
+
+For example, you can use it like this:
+*/
 pub struct FindPlaceIterator<'a, 'b> {
     find_place: &'b mut FindPlace<'a>,
     current_index: usize,

@@ -138,7 +138,7 @@ pub enum PlaceSearchPlaceFields {
 }
 
 mod tests {
-    use crate::models::constants::{PlaceDetailsPlaceFields, PlaceSearchPlaceFields};
+    use crate::types::constants::{PlaceDetailsPlaceFields, PlaceSearchPlaceFields};
 
     #[test]
     fn test_place_details_fields_as_str() {

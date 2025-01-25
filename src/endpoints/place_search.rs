@@ -1,9 +1,9 @@
-use crate::service::text_search::TextSearch;
+use crate::endpoints::text_search::TextSearch;
 
-use crate::service::nearby_search::NearbySearch;
-use crate::service::place_details::PlaceDetails;
+use crate::endpoints::nearby_search::NearbySearch;
+use crate::endpoints::place_details::PlaceDetails;
 use reqwest::Client;
-use crate::service::find_place::FindPlace;
+use crate::endpoints::find_place::FindPlace;
 
 pub struct PlaceSearch<'a> {
     api_key: String,

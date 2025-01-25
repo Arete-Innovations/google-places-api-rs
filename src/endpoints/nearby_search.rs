@@ -1,6 +1,6 @@
-use crate::models::constants::place::Location;
-use crate::models::constants::{Language, PlaceSearchPlace, PlaceTypes};
-use crate::models::NearbySearchResult;
+use crate::types::constants::place::Location;
+use crate::types::constants::{Language, PlaceSearchPlace, PlaceTypes};
+use crate::types::NearbySearchResult;
 use reqwest::Client;
 use std::time::Duration;
 use tokio::time::sleep;

@@ -1,4 +1,4 @@
-use crate::service::place_search::PlaceSearch;
+use crate::endpoints::place_search::PlaceSearch;
 use dotenv::dotenv;
 use reqwest::Client;
 
@@ -18,7 +18,7 @@ impl GooglePlacesAPI {
     ///
     /// Panics if the `GOOGLE_PLACES_API_KEY` environment variable is not set.
     pub fn new() -> Self {
-        dotenv().ok(); // This line loads the environment variables from the ".env" file.
+        dotenv().ok();
         Self {
             api_key: String::from(
                 std::env::var("GOOGLE_PLACES_API_KEY").expect("GOOGLE_PLACES_API_KEY must be set."),

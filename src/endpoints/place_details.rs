@@ -1,5 +1,5 @@
-use crate::models::constants::{Language, PlaceDetailsPlaceFields, ReviewSort};
-use crate::models::PlaceDetailsResult;
+use crate::types::constants::{Language, PlaceDetailsPlaceFields, ReviewSort};
+use crate::types::PlaceDetailsResult;
 use isocountry::CountryCode;
 use reqwest::Client;
 use std::collections::HashSet;
