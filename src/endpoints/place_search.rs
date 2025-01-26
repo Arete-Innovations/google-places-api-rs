@@ -4,6 +4,7 @@ use crate::endpoints::nearby_search::NearbySearch;
 use crate::endpoints::place_details::PlaceDetails;
 use reqwest::Client;
 use crate::endpoints::find_place::FindPlace;
+use crate::endpoints::place_photos::PlacePhotos;
 
 pub struct PlaceSearch<'a> {
     api_key: String,
@@ -73,5 +74,10 @@ impl<'a> PlaceSearch<'a> {
     pub fn find_place(&mut self) -> FindPlace {
         let find_place_object: FindPlace = FindPlace::new(self.api_key.as_str(), self.client);
         find_place_object
+    }
+
+    pub fn place_photos(&mut self) -> PlacePhotos {
+        let place_photos_object: PlacePhotos = PlacePhotos::new(self.api_key.as_str(), self.client);
+        place_photos_object
     }
 }

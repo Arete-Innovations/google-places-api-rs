@@ -8,8 +8,8 @@ mod tests {
     use crate::endpoints::api::GooglePlacesAPI;
     use futures::future::join_all;
     use std::collections::HashSet;
-    
-    
+    use std::fs::{copy, File};
+    use std::io::{BufReader, Read, Write};
     use std::time::Instant;
 
 
@@ -353,8 +353,28 @@ mod tests {
 
 
         assert!(count > 0);
+    }
 
 
+    #[tokio::test]
+    async fn test_photo() {
+        let places_api = GooglePlacesAPI::new();
 
+        let photo = places_api
+            .place_search()
+            .place_photos()
+            .with_photo_reference("ATJ83zhSSAtkh5LTozXMhBghqubeOxnZWUV2m7Hv2tQaIzKQJgvZk9yCaEjBW0r0Zx1oJ9RF1G7oeM34sQQMOv8s2zA0sgGBiyBgvdyMxeVByRgHUXmv")
+            .execute()
+            .await
+            .unwrap()
+            .get_photo();
+
+        // Open the file and read its contents into a Vec<u8>
+        let mut file = BufReader::new(File::open("src/tests/image.jpg").unwrap());
+        let mut file_content = Vec::new();
+        file.read_to_end(&mut file_content).unwrap();
+
+        // Compare the two vectors
+        assert!(photo.iter().zip(file_content.iter()).all(|(a, b)| a == b));
     }
 }

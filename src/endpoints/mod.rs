@@ -4,3 +4,4 @@ pub mod nearby_search;
 pub mod place_details;
 pub mod place_search;
 pub mod text_search;
+mod place_photos;
