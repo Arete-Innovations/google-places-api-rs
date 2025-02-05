@@ -1,5 +1,5 @@
 [package]
-name = "google-places-api-rs"
+name = "google-places-api"
 version = "0.1.0"
 edition = "2021"
 authors = ["Croitoru Cristian <cristianalexandrucroitoru@gmail.com>"]
