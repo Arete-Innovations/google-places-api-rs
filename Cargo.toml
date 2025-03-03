@@ -1,12 +1,12 @@
 [package]
 name = "google-places-api"
-version = "0.1.0"
+version = "0.5.3"
 edition = "2021"
-authors = ["Croitoru Cristian <cristianalexandrucroitoru@gmail.com>"]
+authors = ["Croitoru Cristian <cristianalexandrucroitoru@gmail.com>", "Zmole Cristian <tragdate@gmail.com>"]
 description = "Unofficial Google Places API for rust."
-license = "BSD-3-Clause"
+license = "MIT"
 documentation = "https://docs.rs/google_places_api_rs"
-repository = "https://github.com/ZmoleCristian/google-places-api-rs"
+repository = "https://github.com/Arete-Innovations/google-places-api-rs"
 keywords = ["google", "places", "api", "reviews", "ratings"]
 categories = ["asynchronous", "api-bindings"]
 readme = "README.md"
