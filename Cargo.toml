@@ -1,6 +1,6 @@
 [package]
 name = "google-places-api"
-version = "0.5.3"
+version = "0.5.5"
 edition = "2021"
 authors = ["Croitoru Cristian <cristianalexandrucroitoru@gmail.com>", "Zmole Cristian <tragdate@gmail.com>"]
 description = "Unofficial Google Places API for rust."
