@@ -23,11 +23,10 @@ A comprehensive Rust library to interact with the Google Places API, providing m
 
 ## Installation
 
-Add the following to your `Cargo.toml`:
+Add the following to your project
 
-```toml
-[dependencies]
-google_places_api = "0.1.0"
+```bash
+cargo add google_places_api
 ```
 
 ---
