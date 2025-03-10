@@ -17,7 +17,7 @@ mod tests {
     async fn test_text_search() {
         let mut report = String::new();
         let start = Instant::now();
-        let places_api = GooglePlacesAPI::new();
+        let places_api = GooglePlacesAPI::from_env();
         let result = places_api
             .place_search()
             .text_search()
@@ -44,7 +44,7 @@ mod tests {
     async fn test_text_search_with_radius() {
         let mut report = String::new();
         let start = Instant::now();
-        let places_api = GooglePlacesAPI::new();
+        let places_api = GooglePlacesAPI::from_env();
         let result = places_api
             .place_search()
             .text_search()
@@ -72,7 +72,7 @@ mod tests {
     async fn test_nearby_search() {
         let mut report = String::new();
         let start = Instant::now();
-        let places_api = GooglePlacesAPI::new();
+        let places_api = GooglePlacesAPI::from_env();
         let result = places_api
             .place_search()
             .nearby_search()
@@ -101,7 +101,7 @@ mod tests {
     async fn test_text_search_with_language() {
         let mut report = String::new();
         let start = Instant::now();
-        let places_api = GooglePlacesAPI::new();
+        let places_api = GooglePlacesAPI::from_env();
         let result = places_api
             .place_search()
             .text_search()
@@ -128,7 +128,7 @@ mod tests {
         let report = String::new();
         let start = std::time::Instant::now();
 
-        let places_api = GooglePlacesAPI::new();
+        let places_api = GooglePlacesAPI::from_env();
 
         let results: Vec<_> = places_api
             .place_search()
@@ -163,7 +163,7 @@ mod tests {
         let report = String::new();
         let start = std::time::Instant::now();
 
-        let places_api = GooglePlacesAPI::new();
+        let places_api = GooglePlacesAPI::from_env();
 
         let tasks: Vec<_> = places_api
             .place_search()
@@ -206,7 +206,7 @@ mod tests {
         let report = String::new();
         let start = std::time::Instant::now();
 
-        let places_api = GooglePlacesAPI::new();
+        let places_api = GooglePlacesAPI::from_env();
 
         let tasks: Vec<_> = places_api
             .place_search()
@@ -254,7 +254,7 @@ mod tests {
         let report = String::new();
         let start = std::time::Instant::now();
 
-        let places_api = GooglePlacesAPI::new();
+        let places_api = GooglePlacesAPI::from_env();
 
         let tasks: Vec<_> = places_api
             .place_search()
@@ -303,7 +303,7 @@ mod tests {
         let mut report = String::new();
         let start = std::time::Instant::now();
 
-        let places_api = GooglePlacesAPI::new();
+        let places_api = GooglePlacesAPI::from_env();
         let result = places_api
             .place_search()
             .find_place()
@@ -334,7 +334,7 @@ mod tests {
         let report = String::new();
         let start = std::time::Instant::now();
 
-        let places_api = GooglePlacesAPI::new();
+        let places_api = GooglePlacesAPI::from_env();
         let find_place = places_api
             .place_search()
             .find_place()
@@ -358,7 +358,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_photo() {
-        let places_api = GooglePlacesAPI::new();
+        let places_api = GooglePlacesAPI::from_env();
 
         let photo = places_api
             .place_search()
