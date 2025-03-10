@@ -36,11 +36,11 @@ cargo add google_places_api
 ### Initialization
 
 To start using the library, initialize the `GooglePlacesAPI` instance:
-
+*(Note: you can alos use `::new(API_KEY)` if you want to handle the key yourself*
 ```rust
 use google_places_api::GooglePlacesAPI;
 
-let api = GooglePlacesAPI::new(); // API key is loaded from the `GOOGLE_PLACES_API_KEY` environment variable.
+let api = GooglePlacesAPI::from_env(); // API key is loaded from the `GOOGLE_PLACES_API_KEY` environment variable.
 ```
 
 ### Example: Nearby Search
@@ -52,7 +52,7 @@ use google_places_api::place_search::NearbySearchResult;
 
 #[tokio::main]
 async fn main() {
-    let api = GooglePlacesAPI::new();
+    let api = GooglePlacesAPI::from_env();
     let mut place_search = api.place_search();
 
     let result: NearbySearchResult = place_search
@@ -75,7 +75,7 @@ use google_places_api::models::PlaceDetailsResult;
 
 #[tokio::main]
 async fn main() {
-    let api = GooglePlacesAPI::new();
+    let api = GooglePlacesAPI::from_env();
     let place_search = api.place_search();
 
     let result: PlaceDetailsResult = place_search
@@ -97,7 +97,7 @@ use google_places_api::place_search::FindPlaceSearchResult;
 
 #[tokio::main]
 async fn main() {
-    let api = GooglePlacesAPI::new();
+    let api = GooglePlacesAPI::from_env();
     let mut place_search = api.place_search();
 
     let result: FindPlaceSearchResult = place_search

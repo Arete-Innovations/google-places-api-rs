@@ -17,7 +17,17 @@ impl GooglePlacesAPI {
     /// # Panics
     ///
     /// Panics if the `GOOGLE_PLACES_API_KEY` environment variable is not set.
-    pub fn new() -> Self {
+    pub fn new(key: &str) -> Self {
+        dotenv().ok();
+        Self {
+            api_key: String::from(
+                key,
+            ),
+            client: Client::new(),
+        }
+    }
+
+    pub fn from_env() -> Self {
         dotenv().ok();
         Self {
             api_key: String::from(
